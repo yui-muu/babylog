@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * このユーザが所有するBaby。（ Babyモデルとの関係を定義）
+     */
+    public function babies()
+    {
+        return $this->hasMany(Baby::class);
+    }
 }
