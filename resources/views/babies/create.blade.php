@@ -4,37 +4,43 @@
 
     <h1>Register</h1>
 
-    <div class="row">
-        <div class="col-6">
             {!! Form::model($baby, ['route' => 'babies.store']) !!}
 
+    <div class="row">
+        <div class="col-6">
                 <div class="form-group">
                     {!! Form::label('name', 'Name') !!}
                     {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
                 </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-6">
                 <div class="form-group">
                     {!! Form::label('birthday', 'Birthday') !!}
-                    
-                    <!--{!! Form::selectRange('from_year', 2015, 2018, '', ['placeholder' => '']) !!}年-->
-                    <!--{!! Form::selectRange('from_month', 1, 12, '', ['placeholder' => '']) !!}月-->
-                    <!--{!! Form::selectRange('from_day', 1, 31, '', ['placeholder' => '']) !!}日-->
+                    {!! Form::date('birthday', old('birthday')) !!}
                 </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-6">
                 <div class="form-group">
                     {!! Form::label('gender', 'Gender') !!}
-                    {!!Form::radio('gender', 'boy')!!}
-                    {!!Form::radio('gender', 'girl')!!}
+                    {!!Form::select('gender', ['B' => 'Boy', 'G' => 'Girl'], null, ['placeholder' => '性別を選択'],) !!}
                 </div>
+        </div>
+     </div>
 
                 <div class="form-group">
                     {!! Form::label('weight', 'Weight') !!}
-                    <!--{!! Form::password('password_confirmation', ['class' => 'form-control']) !!}-->
+                    {!! Form::text('weight', null, ['placeholder' => '小数点第一位まで入力（例：3.0）'], old('weight'), ['class' => 'form-control']) !!} kg
                 </div>
                 
                 <div class="form-group">
                     {!! Form::label('height', 'Height') !!}
-                    <!--{!! Form::password('password_confirmation', ['class' => 'form-control']) !!}-->
+                    {!! Form::text('height', null, ['placeholder' => '小数点第一位まで入力（例：50.0）'], ['class' => 'form-control'], old('height')) !!} cm
                 </div>
 
                 {!! Form::submit('Register', ['class' => 'btn btn-primary']) !!}
