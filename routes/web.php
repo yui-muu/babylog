@@ -26,3 +26,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('babies', 'BabiesController', ['only' => ['index', 'create', 'store', 'edit',' update']]);
 });
+
+Route::resource('logs', 'logsController');

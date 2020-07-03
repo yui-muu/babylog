@@ -4,34 +4,24 @@
 
     <h1>Register</h1>
 
-            {!! Form::model($baby, ['route' => 'babies.store']) !!}
-
     <div class="row">
         <div class="col-6">
+            {!! Form::model($baby, ['route' => 'babies.store']) !!}
+
                 <div class="form-group">
                     {!! Form::label('name', 'Name') !!}
                     {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
                 </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-6">
+                
                 <div class="form-group">
                     {!! Form::label('birthday', 'Birthday') !!}
                     {!! Form::date('birthday', old('birthday')) !!}
                 </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-6">
                 <div class="form-group">
                     {!! Form::label('gender', 'Gender') !!}
                     {!!Form::select('gender', ['B' => 'Boy', 'G' => 'Girl'], null, ['placeholder' => '性別を選択'],) !!}
                 </div>
-        </div>
-     </div>
 
                 <div class="form-group">
                     {!! Form::label('weight', 'Weight') !!}

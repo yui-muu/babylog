@@ -11,13 +11,29 @@ class BabiesController extends Controller
     // getで/にアクセスされた場合の「select baby」
     public function index()
     {
-        // Baby一覧を取得
-        $babies = Baby::all();
+        
+        if (\Auth::check()) { // 認証済みの場合
+            // 認証済みユーザを取得
+            $user = \Auth::user();
+            // ユーザのBabyの一覧を作成日時の降順で取得
+            $babies = $user->babies()->orderBy('created_at', 'desc')->paginate(10);
+        
+            // TODO: $babiesが0件なら、新規追加にredirectする。
+            if (count($babies) == 0) {
+                return redirect('babies/create');
+            // $babiesが1件なら、Mypageにredirectする。
+            } else if (count($babies) == 1) {
+                return redirect('logs/index');
+            } else {
+            // それ以外はBaby一覧ビューでそれを表示
+                return view('babies.index', [
+                    'babies' => $babies,
+                ]);
+            }
+        }
 
-        // Baby一覧ビューでそれを表示
-        return view('babies.index', [
-            'babies' => $babies,
-        ]);
+        // Welcomeビューでそれらを表示
+        return view('welcome');
     }
 
     // getで/createにアクセスされた場合の「Baby登録処理」
@@ -41,6 +57,8 @@ class BabiesController extends Controller
         $baby->gender = $request->gender;
         $baby->weight = $request->weight;
         $baby->height = $request->height;
+        $baby->height = $request->height;
+        $baby->user_id = $request->user()->id;
         $baby->save();
 
         // トップページへリダイレクトさせる
@@ -71,6 +89,7 @@ class BabiesController extends Controller
         $baby->gender = $request->gender;
         $baby->weight = $request->weight;
         $baby->height = $request->height;
+        $baby->user_id = $request->user()->id;
         $baby->save();
 
         // トップページへリダイレクトさせる

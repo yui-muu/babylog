@@ -44,4 +44,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Baby::class);
     }
+    
+    
+    
 }
