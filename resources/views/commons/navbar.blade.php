@@ -11,18 +11,21 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                    {{-- ユーザ一覧ページへのリンク --}}
-                    <li class="nav-item"><a href="#" class="nav-link">Users</a></li>
+                    {{-- 各ページへのリンク --}}
+                    <li class="nav-item"><a href="#" class="nav-link">Mypage</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">History</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Average</a></li>
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
+                        <li class="nav-link dropdown-toggle" data-toggle="dropdown">Setting</li>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            {{-- ユーザ詳細ページへのリンク --}}
-                            <li class="dropdown-item"><a href="#">My profile</a></li>
+                            {{-- 編集ページと子ども追加登録ページへのリンク --}}
+                            <li class="dropdown-item"><a href="#">Edit register</a></li>
                             <li class="dropdown-divider"></li>
-                            {{-- ログアウトへのリンク --}}
-                            <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
+                            <li class="dropdown-item">{!! link_to_route('logout.get', 'Add baby') !!}</li>
                         </ul>
                     </li>
+                    {{-- ログアウトへのリンク --}}
+                    <li class="nav-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
                 @else
                     {{-- ユーザ登録ページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('signup.get', 'Signup', [], ['class' => 'nav-link']) !!}</li>

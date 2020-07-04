@@ -3,7 +3,6 @@
 @section('content')
     
     <h1>Mypage</h1>
-    @if (Auth::check())
         <div class="row">
             <aside class="col-sm-4">
                
@@ -46,6 +45,5 @@
                 </table>
                 <p><a href="#" class="btn btn-secondary">入力</a></p>
 
-    @endif
     
 @endsection

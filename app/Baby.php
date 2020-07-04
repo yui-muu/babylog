@@ -15,4 +15,12 @@ class Baby extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    /**
+     * このBabyが所有するLog。（ Logモデルとの関係を定義）
+     */
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
+    }
 }

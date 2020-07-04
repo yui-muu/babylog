@@ -27,4 +27,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('babies', 'BabiesController', ['only' => ['index', 'create', 'store', 'edit',' update']]);
 });
 
-Route::resource('logs', 'logsController');
+Route::resource('logs', 'LogsController');
