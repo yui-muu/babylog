@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Baby; //Babyモデル使用
+use App\Log; //Logモデル使用
 
 class BabiesController extends Controller
 {
@@ -17,13 +18,16 @@ class BabiesController extends Controller
             $user = \Auth::user();
             // ユーザのBabyの一覧を作成日時の降順で取得
             $babies = $user->babies()->orderBy('created_at', 'desc')->paginate(10);
-        
+            
             // TODO: $babiesが0件なら、新規追加にredirectする。
             if (count($babies) == 0) {
                 return redirect('babies/create');
             // $babiesが1件なら、Mypageにredirectする。
             } else if (count($babies) == 1) {
-                return redirect('logs/index');
+               $baby = $babies->first();
+                return view('babies.show', [
+                    'baby' => $baby,
+                 ]);
             } else {
             // それ以外はBaby一覧ビューでそれを表示
                 return view('babies.index', [
@@ -57,8 +61,7 @@ class BabiesController extends Controller
         $baby->gender = $request->gender;
         $baby->weight = $request->weight;
         $baby->height = $request->height;
-        $baby->height = $request->height;
-        $baby->user_id = $request->user()->id;
+        $baby->user_id = \Auth::user()->id;
         $baby->save();
 
         // トップページへリダイレクトさせる
@@ -89,11 +92,26 @@ class BabiesController extends Controller
         $baby->gender = $request->gender;
         $baby->weight = $request->weight;
         $baby->height = $request->height;
-        $baby->user_id = $request->user()->id;
+        $baby->user_id = \Auth::user()->id;
         $baby->save();
 
         // トップページへリダイレクトさせる
         return redirect('/');
+    }
+    
+     // getで/にアクセスされた場合の「Myapage画面」
+    public function show(Request $request, $id)
+    { 
+        $baby = Baby::findOrFail($id);   
+        $request->session()->put('baby', $baby);
+        
+        $log = $baby->logs()->orderBy('created_at', 'desc')->first();
+        // 詳細ビューでそれを表示
+        return view('babies.show', [
+            'baby' => $baby,
+            'log' => $log,
+        ]);
+        
     }
 
 }

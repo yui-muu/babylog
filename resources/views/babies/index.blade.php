@@ -16,7 +16,8 @@
                         <tbody>
                             @foreach ($babies as $baby)
                             <tr>
-                                <td>{{ $baby->name }}</td>
+                                {{-- 選択されたBabyのMypageへのリンク --}}
+                                <td>{!! link_to_route('babies.show', $baby->name, ['baby' => $baby->id]) !!}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -35,4 +36,6 @@
     @endif
     
 @endsection
+
+
 

@@ -1,3 +1,4 @@
+
 <header class="mb-4">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         {{-- トップページへのリンク --}}
@@ -6,26 +7,28 @@
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
+                    @if (Request::route('baby')) 
                     {{-- 各ページへのリンク --}}
-                    <li class="nav-item"><a href="#" class="nav-link">Mypage</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">History</a></li>
+                    <li class="nav-item">{!! link_to_route('babies.show', 'Mypage', ['baby' => Request::route('baby')]) !!}</li>
+                    <li class="nav-item">{!! link_to_route('logs.index', 'History', []) !!}</li>
                     <li class="nav-item"><a href="#" class="nav-link">Average</a></li>
                     <li class="nav-item dropdown">
                         <li class="nav-link dropdown-toggle" data-toggle="dropdown">Setting</li>
                         <ul class="dropdown-menu dropdown-menu-right">
                             {{-- 編集ページと子ども追加登録ページへのリンク --}}
-                            <li class="dropdown-item"><a href="#">Edit register</a></li>
+                            <li class="dropdown-item">{!! link_to_route('babies.edit', 'Edit register', ['baby' => Request::route('baby')]) !!}</li>
                             <li class="dropdown-divider"></li>
-                            <li class="dropdown-item">{!! link_to_route('logout.get', 'Add baby') !!}</li>
+                            <li class="dropdown-item">{!! link_to_route('babies.create', 'Add baby', []) !!}</li>
                         </ul>
                     </li>
+                    @else
                     {{-- ログアウトへのリンク --}}
                     <li class="nav-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
+                    @endif
                 @else
                     {{-- ユーザ登録ページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('signup.get', 'Signup', [], ['class' => 'nav-link']) !!}</li>

@@ -25,12 +25,12 @@
 
                 <div class="form-group">
                     {!! Form::label('weight', 'Weight') !!}
-                    {!! Form::text('weight', null, ['placeholder' => '小数点第一位まで入力（例：3.0）'], old('weight'), ['class' => 'form-control']) !!} kg
+                    {!! Form::text('Birth weight', null, ['placeholder' => '小数点第一位まで入力（例：3.0）'], ['class' => 'form-control']) !!} kg
                 </div>
                 
                 <div class="form-group">
                     {!! Form::label('height', 'Height') !!}
-                    {!! Form::text('height', null, ['placeholder' => '小数点第一位まで入力（例：50.0）'], ['class' => 'form-control'], old('height')) !!} cm
+                    {!! Form::text('Birth height', null, ['placeholder' => '小数点第一位まで入力（例：50.0）'], ['class' => 'form-control'],) !!} cm
                 </div>
 
                 {!! Form::submit('Register', ['class' => 'btn btn-primary']) !!}

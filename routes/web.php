@@ -24,7 +24,10 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('babies', 'BabiesController', ['only' => ['index', 'create', 'store', 'edit',' update']]);
+     Route::resource('babies', 'BabiesController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'show']]);
+    
+
+
+Route::resource('logs', 'LogsController' ,  ['only' => ['index', 'create', 'store', 'edit', 'update', 'delete']]);
 });
 
-Route::resource('logs', 'LogsController');

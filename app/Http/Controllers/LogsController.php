@@ -16,15 +16,18 @@ class LogsController extends Controller
      * @return \Illuminate\Http\Response
      */
      
-     // getで/にアクセスされた場合の「Myapage画面」
+     // getで/にアクセスされた場合の「History画面」
     public function index()
     {
-        // babyを取得
-        $baby = Baby::all();
+        // logを取得
+        $log = Log::all();
+        
+        // ログの一覧を作成日時の降順で取得
+            $log = $baby->logs()->orderBy('created_at', 'desc')->paginate(10);
 
-        // メッセージ一覧ビューでそれを表示
-        return view('logs.index', [
-            'baby' => $baby,
+        // 一覧ビューでそれを表示
+        return view('logs.history', [
+            'logs' => $logs,
         ]);
     }
 
@@ -37,7 +40,13 @@ class LogsController extends Controller
      // getで/createにアクセスされた場合の「Babyの体重・身長登録処理」
     public function create()
     {
-        //
+        $log = new Log;
+       
+
+        // Baby作成ビューを表示
+        return view('logs.create', [
+            'log' => $log,
+        ]);
     }
 
     /**
@@ -50,7 +59,20 @@ class LogsController extends Controller
      // postで/にアクセスされた場合の「Babyの体重・身長登録処理」
     public function store(Request $request)
     {
-        //
+        
+        $baby = $request->session()->get('baby');
+        // Babyを作成
+        $log = new Log;
+        $log->weight = $request->weight;
+        $log->height = $request->height;
+        $log->baby_id = $baby->id;
+        $log->save();
+
+        // 前のURLへリダイレクトさせる
+       return view('babies.show', [
+            'baby' => $baby,
+            'log' => $log,
+        ]);
     }
 
     /**
@@ -60,10 +82,11 @@ class LogsController extends Controller
      * @return \Illuminate\Http\Response
      */
      
-     // getで/にアクセスされた場合の「History画面」
+     
     public function show($id)
-    {
-        //
+    { 
+        
+        
     }
 
     /**

@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-6">
-            {!! Form::model($baby, ['route' => 'babies.update']) !!}
+            {!! Form::model($baby, ['route' => ['babies.update', $baby->id], 'method' => 'put']) !!}
 
                 <div class="form-group">
                     {!! Form::label('name', 'Name') !!}
