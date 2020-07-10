@@ -14,7 +14,7 @@
                     @if (Request::route('baby')) 
                     {{-- 各ページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('babies.show', 'Mypage', ['baby' => Request::route('baby')]) !!}</li>
-                    <li class="nav-item">{!! link_to_route('logs.index', 'History', []) !!}</li>
+                    <li class="nav-item">{!! link_to_route('logs.index', 'History', ['baby' => Request::route('baby')]) !!}</li>
                     <li class="nav-item"><a href="#" class="nav-link">Average</a></li>
                     <li class="nav-item dropdown">
                         <li class="nav-link dropdown-toggle" data-toggle="dropdown">Setting</li>
@@ -22,7 +22,9 @@
                             {{-- 編集ページと子ども追加登録ページへのリンク --}}
                             <li class="dropdown-item">{!! link_to_route('babies.edit', 'Edit register', ['baby' => Request::route('baby')]) !!}</li>
                             <li class="dropdown-divider"></li>
-                            <li class="dropdown-item">{!! link_to_route('babies.create', 'Add baby', []) !!}</li>
+                            <li class="dropdown-item">{!! link_to_route('babies.create', 'Add baby', ['baby' => Request::route('baby')]) !!}</li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
                         </ul>
                     </li>
                     @else

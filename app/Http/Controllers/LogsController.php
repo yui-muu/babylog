@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Log; //Logモデル使用
-use App\Baby;
+use App\Baby;//Babyモデル使用
 
 
 class LogsController extends Controller
@@ -17,17 +17,17 @@ class LogsController extends Controller
      */
      
      // getで/にアクセスされた場合の「History画面」
-    public function index()
+    public function index($id)
     {
-        // logを取得
-        $log = Log::all();
-        
-        // ログの一覧を作成日時の降順で取得
-            $log = $baby->logs()->orderBy('created_at', 'desc')->paginate(10);
+        // babyを取得
+        $baby = Baby::findOrFail($id);   
+        // // ログの一覧を作成日時の降順で取得
+        $logs = $baby->logs()->orderBy('created_at', 'desc')->paginate(10);
 
         // 一覧ビューでそれを表示
-        return view('logs.history', [
+        return view('logs.index', [
             'logs' => $logs,
+            'baby' => $baby,
         ]);
     }
 
@@ -69,10 +69,7 @@ class LogsController extends Controller
         $log->save();
 
         // 前のURLへリダイレクトさせる
-       return view('babies.show', [
-            'baby' => $baby,
-            'log' => $log,
-        ]);
+       return redirect(route('babies.show', ['baby' => $baby->id]));
     }
 
     /**

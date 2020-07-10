@@ -22,12 +22,11 @@ class BabiesController extends Controller
             // TODO: $babiesが0件なら、新規追加にredirectする。
             if (count($babies) == 0) {
                 return redirect('babies/create');
-            // $babiesが1件なら、Mypageにredirectする。
+            // $babiesが1件なら、Mypageを表示する。
             } else if (count($babies) == 1) {
                $baby = $babies->first();
-                return view('babies.show', [
-                    'baby' => $baby,
-                 ]);
+               return redirect(route('babies.show', ['baby' => $baby->id]));
+                
             } else {
             // それ以外はBaby一覧ビューでそれを表示
                 return view('babies.index', [
