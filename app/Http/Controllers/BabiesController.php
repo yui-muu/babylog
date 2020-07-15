@@ -58,6 +58,14 @@ class BabiesController extends Controller
     // postで/にアクセスされた場合の「Baby登録処理」
     public function store(Request $request)
     {
+        // バリデーション
+        $request->validate([
+            'name' => 'required|max:255',
+            'birthday' => 'required',
+            'gender' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+        ]);
         // Babyを作成
         $baby = new Baby;
         $baby->name = $request->name;
@@ -88,6 +96,14 @@ class BabiesController extends Controller
     // putまたはpatchで/（任意のid）にアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
     {
+        // バリデーション
+        $request->validate([
+            'name' => 'required|max:255',
+            'birthday' => 'required',
+            'gender' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+        ]);
         // idの値でBabyを検索して取得
         $baby = Baby::findOrFail($id);
         // 更新
