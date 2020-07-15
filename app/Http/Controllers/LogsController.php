@@ -97,18 +97,7 @@ class LogsController extends Controller
      */
      
      
-    public function show($id)
-    { 
-        
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
      
      // getで/（任意のid）/editにアクセスされた場合の「体重・身長編集画面表示処理」
     public function edit($id)
@@ -130,9 +119,10 @@ class LogsController extends Controller
      * @return \Illuminate\Http\Response
      */
      
-     // putまたはpatchで/（任意のid）にアクセスされた場合の「更新処理」
+     // putで（任意のid）にアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
     {
+        $baby = '';
         // idの値でlogを検索して取得
         $log = Log::findOrFail($id);
         // logを更新
@@ -140,8 +130,8 @@ class LogsController extends Controller
         $log->height = $request->height;
         $log->save();
 
-        // トップページへリダイレクトさせる
-        return redirect(route('logs.index', ['log' => $log->id]));
+        // Historyページへリダイレクトさせる
+        return redirect(route('logs.index', ['baby' => $log->baby_id]));
     }
 
     /**
