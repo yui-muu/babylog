@@ -28,7 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
       Route::get('logs', 'LogsController@index')->name('logs.index');
     });
     Route::resource('babies', 'BabiesController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'show']]);
-    Route::resource('logs', 'LogsController' ,  ['only' => ['create', 'store', 'edit', 'update', 'delete']]);
+    Route::resource('logs', 'LogsController' ,  ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
     
 });
 
+Route::get('averages', 'AveragesController@index')->name('averages.index');

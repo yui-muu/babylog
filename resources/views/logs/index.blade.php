@@ -12,6 +12,7 @@
                     <ul class="list-unstyled">
                         @foreach ($logs as $log)
                         
+                            <div>{{ $log->created_at->format('Y-m-d') }}</div>
                             <div>Weight</div>
                             <table class="table table-striped">
                                 <tr>
@@ -20,11 +21,11 @@
                                 </tr>
                                 <tr>
                                     <th>平均体重</th>
-                                    <td>kg</td>
+                                    <td>{{ $average->weight }}kg</td>
                                 </tr>
                                 <tr>
                                     <th>平均との差</th>
-                                    <td>kg</td>
+                                    <td>{{ $log->weight - $average->weight }}kg</td>
                                 </tr>
                             </table>
                             
@@ -36,13 +37,19 @@
                                     </tr>
                                     <tr>
                                         <th>平均身長</th>
-                                        <td>cm</td>
+                                        <td>{{ $average->height }}cm</td>
                                     </tr>
                                     <tr>
                                         <th>平均との差</th>
-                                        <td>cm</td>
+                                        <td>{{ $log->height - $average->height }}kgcm</td>
                                     </tr>
                             </table>
+                            {{-- log編集ページへのリンク --}}
+                            {!! link_to_route('logs.edit', '編集', ['log' => $log->id], ['class' => 'btn btn-success']) !!}
+                            {{-- log削除フォーム --}}
+                            {!! Form::model($log, ['route' => ['logs.destroy', $log->id], 'method' => 'delete']) !!}
+                                {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
                         @endforeach
                 @endif
 

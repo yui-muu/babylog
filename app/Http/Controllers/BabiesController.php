@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
 use App\Baby; //Babyモデル使用
 use App\Log; //Logモデル使用
+use App\Average; //Averageモデル使用
+
+use Carbon\Carbon;
+
 
 class BabiesController extends Controller
 {
@@ -103,12 +108,72 @@ class BabiesController extends Controller
     { 
         $baby = Baby::findOrFail($id);   
         $request->session()->put('baby', $baby);
+        $gender = $baby->gender;
         
-        $log = $baby->logs()->orderBy('created_at', 'desc')->first();
+        
+        //ログを日付昇順で表示
+        $logs = $baby->logs()->orderBy('created_at', 'desc')->get();
+        $log = \Arr::get($logs, 0);
+        $logFormer = \Arr::get($logs, 1);
+        
+        //生後xx日を取得
+        $dt = Carbon::now();
+        $birthday = Carbon::parse($baby->birthday);
+        $num = $dt->diffInDays($birthday);
+        
+       $logDays = '';
+       $registerLogDays = '';
+        
+        //前回のLogと直近のLogの日付の経過日数を取得し、1日あたりの体重の増加量を取得
+        if ($log && $logFormer) { 
+            $latest = Carbon::parse($log->created_at);
+            $former = Carbon::parse($logFormer->created_at);
+            $logDays = $latest->diffInDays($former);
+        } elseif ($log) {
+            // 初回のBabyと直近のLogの日付の経過日数を取得し、1日あたりの体重の増加量を取得
+            $latest = Carbon::parse($log->created_at);
+            $registerDay = Carbon::parse($baby->birthday);
+            $registerLogDays = $latest->diffInDays($registerDay);
+        } else {
+            // 処理をしない
+        }
+        
+        
+        $gainPerDay = null;
+        $firstGainPerDay = null;
+        $nothing = '---';
+        $result = '';
+        
+        if ($log && !($logDays === 0) && !($registerLogDays === 0)) {
+            if (count($logs) >= 2) {
+                $gainPerDay = floor(($log->weight - $logFormer->weight) / $logDays * 1000);
+                $result = $gainPerDay;
+            } elseif (count($logs) === 1) {
+                $firstGainPerDay = floor(($log->weight - $baby->weight) / $registerLogDays * 1000);
+                $result = $firstGainPerDay;
+            }
+        } elseif (($logDays === 0) || ($registerLogDays === 0)) {
+            // 処理をしない
+        } else {
+            $nothing;
+            $result = $nothing;
+        }
+        
+        $average = Average::Where('age_from', '<=', $num)->Where('age_to', '>=', $num)
+        ->Where('gender', $baby->gender)
+        ->first();
+        
+       
+        
         // 詳細ビューでそれを表示
         return view('babies.show', [
             'baby' => $baby,
+            'gender' => $gender,
             'log' => $log,
+            'average' => $average,
+            'num' => $num,
+            'result' => $result,
+            
         ]);
         
     }

@@ -1,11 +1,17 @@
 <?php
 
+
 namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
 use App\Log; //Logモデル使用
 use App\Baby;//Babyモデル使用
+use App\Average; //Averageモデル使用
+
+use Carbon\Carbon;
+
 
 
 class LogsController extends Controller
@@ -19,15 +25,26 @@ class LogsController extends Controller
      // getで/にアクセスされた場合の「History画面」
     public function index($id)
     {
+        
         // babyを取得
         $baby = Baby::findOrFail($id);   
         // // ログの一覧を作成日時の降順で取得
         $logs = $baby->logs()->orderBy('created_at', 'desc')->paginate(10);
+        
+        //生後xx日を取得
+        $dt = Carbon::now();
+        $birthday = Carbon::parse($baby->birthday);
+        $num = $dt->diffInDays($birthday);
+        
+        $average = Average::Where('age_from', '<=', $num)->Where('age_to', '>=', $num)
+        ->Where('gender', $baby->gender)
+        ->first();
 
         // 一覧ビューでそれを表示
         return view('logs.index', [
             'logs' => $logs,
             'baby' => $baby,
+            'average' => $average,
         ]);
     }
 
@@ -96,7 +113,13 @@ class LogsController extends Controller
      // getで/（任意のid）/editにアクセスされた場合の「体重・身長編集画面表示処理」
     public function edit($id)
     {
-        //
+        // // idの値でlogを検索して取得
+        $log = Log::findOrFail($id);
+
+        // // 編集ビューでそれを表示
+        return view('logs.edit', [
+            'log' => $log,
+        ]);
     }
 
     /**
@@ -110,7 +133,15 @@ class LogsController extends Controller
      // putまたはpatchで/（任意のid）にアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
     {
-        //
+        // idの値でlogを検索して取得
+        $log = Log::findOrFail($id);
+        // logを更新
+        $log->weight = $request->weight;
+        $log->height = $request->height;
+        $log->save();
+
+        // トップページへリダイレクトさせる
+        return redirect(route('logs.index', ['log' => $log->id]));
     }
 
     /**
@@ -123,6 +154,12 @@ class LogsController extends Controller
      // deleteで/idにアクセスされた場合の「体重・身長削除処理」
     public function destroy($id)
     {
-        //
+        // idの値でlogを検索して取得
+        $log = Log::findOrFail($id);
+        // logを削除
+        $log->delete();
+
+        // 前のページへリダイレクトさせる
+        return back();
     }
 }

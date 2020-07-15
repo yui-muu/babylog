@@ -2,12 +2,11 @@
 
 @section('content')
 
-    <h1>Newest</h1>
-    <h2>※入力は1日1回</h2>
+    <h1>編集</h1>
 
     <div class="row">
         <div class="col-6">
-            {!! Form::model($log, ['route' => 'logs.store']) !!}
+            {!! Form::model($log, ['route' => ['logs.update', $log->id], 'method' => 'put']) !!}
 
 
                 <div class="form-group">
@@ -20,7 +19,7 @@
                     {!! Form::text('height', null, ['placeholder' => '小数点第一位まで入力（例：50.0）'], old('height'), ['class' => 'form-control']) !!} cm
                 </div>
 
-                {!! Form::submit('登録', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('更新', ['class' => 'btn btn-primary']) !!}
 
             {!! Form::close() !!}
         </div>

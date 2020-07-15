@@ -13,9 +13,9 @@
                 @if (Auth::check())
                     @if (Request::route('baby')) 
                     {{-- 各ページへのリンク --}}
-                    <li class="nav-item">{!! link_to_route('babies.show', 'Mypage', ['baby' => Request::route('baby')]) !!}</li>
-                    <li class="nav-item">{!! link_to_route('logs.index', 'History', ['baby' => Request::route('baby')]) !!}</li>
-                    <li class="nav-item"><a href="#" class="nav-link">Average</a></li>
+                    <li class="nav-item">{!! link_to_route('babies.show', 'Mypage', ['baby' => Request::route('baby')], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('logs.index', 'History', ['baby' => Request::route('baby')], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('averages.index', 'Average', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item dropdown">
                         <li class="nav-link dropdown-toggle" data-toggle="dropdown">Setting</li>
                         <ul class="dropdown-menu dropdown-menu-right">
@@ -29,7 +29,7 @@
                     </li>
                     @else
                     {{-- ログアウトへのリンク --}}
-                    <li class="nav-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
+                    <li class="nav-item">{!! link_to_route('logout.get', 'Logout'), ['class' => 'nav-link'] !!}</li>
                     @endif
                 @else
                     {{-- ユーザ登録ページへのリンク --}}
