@@ -5,18 +5,35 @@
         <div class="row">
             <aside class="col-sm-4">
                
-
+                    <h2>Boy</h2>
                     <table class="table table-striped">
                             <tr>
                                 <th>生後</th>
                                 <th>Weight</th>
                                 <th>Height</th>
                             </tr>
-                        @foreach ($averages as $average)
+                        @foreach ($boyAverages as $boyAverage)
                             <tr>
-                                <td>{{ $average-> age_from }} 〜 {{ $average-> age_to }} 日</td>
-                                <td>{{ $average->weight }}kg</td>
-                                <td>{{ $average->height }}cm</td>
+                                <td>{{ $boyAverage-> age_from }} 〜 {{ $boyAverage-> age_to }} 日</td>
+                                <td>{{ $boyAverage->weight }}kg</td>
+                                <td>{{ $boyAverage->height }}cm</td>
+                                
+                            </tr>
+                        @endforeach
+                    </table>
+                    
+                    <h2>Girl</h2>
+                    <table class="table table-striped">
+                            <tr>
+                                <th>生後</th>
+                                <th>Weight</th>
+                                <th>Height</th>
+                            </tr>
+                        @foreach ($girlAverages as $girlAverage)
+                            <tr>
+                                <td>{{ $girlAverage-> age_from }} 〜 {{ $girlAverage-> age_to }} 日</td>
+                                <td>{{ $girlAverage->weight }}kg</td>
+                                <td>{{ $girlAverage->height }}cm</td>
                                 
                             </tr>
                         @endforeach

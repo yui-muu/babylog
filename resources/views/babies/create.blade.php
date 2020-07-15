@@ -20,7 +20,7 @@
 
                 <div class="form-group">
                     {!! Form::label('gender', 'Gender') !!}
-                    {!!Form::select('gender', ['B' => 'Boy', 'G' => 'Girl'], null, ['placeholder' => '性別を選択'],) !!}
+                    {!!Form::select('gender', ['Boy' => 'Boy', 'Girl' => 'Girl'], null, ['placeholder' => '性別を選択'],) !!}
                 </div>
 
                 <div class="form-group">

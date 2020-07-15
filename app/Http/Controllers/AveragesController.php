@@ -10,17 +10,17 @@ class AveragesController extends Controller
 {
     public function index()
     {
+        
         // 一覧を取得
-        $averages = Average::all();
-        
-        
-        // $average = Average::Where('age_from', '<=', $num)->Where('age_to', '>=', $num)
-        // ->Where('gender', $baby->gender)
-        // ->get();
+        $boyAverages = Average::Where('gender', 'Boy')
+        ->get();
+        $girlAverages = Average::Where('gender', 'Girl')
+        ->get();
 
         // メッセージ一覧ビューでそれを表示
         return view('averages.index', [
-            'averages' => $averages,
+            'boyAverages' => $boyAverages,
+            'girlAverages' => $girlAverages,
         ]);
     }
     
