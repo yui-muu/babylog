@@ -15,7 +15,7 @@
                     {{-- 各ページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('babies.show', 'Mypage', ['baby' => Request::route('baby')], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('logs.index', 'History', ['baby' => Request::route('baby')], ['class' => 'nav-link']) !!}</li>
-                    <li class="nav-item">{!! link_to_route('averages.index', 'Average', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('averages.index', 'Average', ['baby' => Request::route('baby')], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item dropdown">
                         <li class="nav-link dropdown-toggle" data-toggle="dropdown">Setting</li>
                         <ul class="dropdown-menu dropdown-menu-right">

@@ -3,7 +3,7 @@
 @section('content')
 <h1>Average</h1>
         <div class="row">
-            <aside class="col-sm-4">
+            <aside class="col-6">
                
                     <h2>Boy</h2>
                     <table class="table table-striped">
@@ -11,12 +11,14 @@
                                 <th>生後</th>
                                 <th>Weight</th>
                                 <th>Height</th>
+                                <th>1日の体重増加目安</th>
                             </tr>
                         @foreach ($boyAverages as $boyAverage)
                             <tr>
                                 <td>{{ $boyAverage-> age_from }} 〜 {{ $boyAverage-> age_to }} 日</td>
                                 <td>{{ $boyAverage->weight }}kg</td>
                                 <td>{{ $boyAverage->height }}cm</td>
+                                <td align="center">{{ $boyAverage->perday }}g</td>
                                 
                             </tr>
                         @endforeach
@@ -28,12 +30,14 @@
                                 <th>生後</th>
                                 <th>Weight</th>
                                 <th>Height</th>
+                                <th>1日の体重増加目安</th>
                             </tr>
                         @foreach ($girlAverages as $girlAverage)
                             <tr>
                                 <td>{{ $girlAverage-> age_from }} 〜 {{ $girlAverage-> age_to }} 日</td>
                                 <td>{{ $girlAverage->weight }}kg</td>
                                 <td>{{ $girlAverage->height }}cm</td>
+                                <td align="center">{{ $girlAverage->perday }}g</td>
                                 
                             </tr>
                         @endforeach

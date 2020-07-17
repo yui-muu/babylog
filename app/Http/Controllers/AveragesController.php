@@ -9,8 +9,10 @@ use App\Average; //Averageモデル使用
 
 class AveragesController extends Controller
 {
-    public function index()
+    public function index($id)
     {
+        // babyを取得
+        $baby = Baby::findOrFail($id);
         // 一覧を取得
         $boyAverages = Average::Where('gender', 'Boy')
         ->get();

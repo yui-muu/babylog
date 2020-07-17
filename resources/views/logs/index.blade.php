@@ -45,7 +45,7 @@
                                     </tr>
                             </table>
                             {{-- log編集ページへのリンク --}}
-                            {!! link_to_route('logs.edit', '編集', ['baby' => $log->baby_id], ['class' => 'btn btn-success']) !!}
+                            {!! link_to_route('logs.edit', '編集', ['baby' => $log->baby_id, 'log' => $log->id], ['class' => 'btn btn-success']) !!}
                             {{-- log削除フォーム --}}
                             {!! Form::model($log, ['route' => ['logs.destroy', $log->id], 'method' => 'delete']) !!}
                                 {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}

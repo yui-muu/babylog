@@ -79,10 +79,10 @@ class LogsController extends Controller
      // postで/にアクセスされた場合の「Babyの体重・身長登録処理」
     public function store(Request $request)
     {
-        // // バリデーション
+        // // // バリデーション
         // $request->validate([
-        //     'weight' => '',
-        //     'height' => '',
+        //     'weight' => 'numeric',
+        //     'height' => 'numeric',
         // ]);
         $baby = $request->session()->get('baby');
         // Babyを作成
@@ -107,10 +107,12 @@ class LogsController extends Controller
     
      
      // getで/（任意のid）/editにアクセスされた場合の「体重・身長編集画面表示処理」
-    public function edit($id)
+    public function edit($id, $log)
     {
+         // babyを取得
+        $baby = Baby::findOrFail($id);
         // // idの値でlogを検索して取得
-        $log = Log::findOrFail($id);
+        $log = Log::findOrFail($log);
 
         // // 編集ビューでそれを表示
         return view('logs.edit', [
@@ -130,10 +132,11 @@ class LogsController extends Controller
     public function update(Request $request, $id)
     {
         // // バリデーション
-        // $request->validate([
-        //     'weight' => '',
-        //     'height' => '',
-        // ]);
+        $request->validate([
+            'weight' => 'numeric',
+            'height' => 'numeric',
+        ]);
+        
         $baby = '';
         // idの値でlogを検索して取得
         $log = Log::findOrFail($id);
