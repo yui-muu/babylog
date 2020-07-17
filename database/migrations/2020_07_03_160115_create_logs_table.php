@@ -20,7 +20,7 @@ class CreateLogsTable extends Migration
             $table->decimal('height', 3, 1);
             $table->timestamps();
             
-            $table->foreign('baby_id')->references('id')->on('babies');
+            $table->foreign('baby_id')->references('id')->on('babies')->onDelete('cascade');
 
         });
     }

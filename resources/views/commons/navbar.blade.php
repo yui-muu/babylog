@@ -29,7 +29,7 @@
                     </li>
                     @else
                     {{-- ログアウトへのリンク --}}
-                    <li class="nav-item">{!! link_to_route('logout.get', 'Logout'), ['class' => 'nav-link'] !!}</li>
+                    <li class="nav-item">{!! link_to_route('logout.get', 'Logout', [], ['class' => 'nav-link'])  !!}</li>
                     @endif
                 @else
                     {{-- ユーザ登録ページへのリンク --}}

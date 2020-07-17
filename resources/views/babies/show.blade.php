@@ -65,5 +65,5 @@
                         </tr>
                 </table>
                 {{-- 入力ページへのリンク --}}
-                {!! link_to_route('logs.create', '入力', [], ['class' => 'btn btn-primary']) !!}
+                {!! link_to_route('logs.create', '入力', ['baby' => $baby->id], ['class' => 'btn btn-primary']) !!}
 @endsection

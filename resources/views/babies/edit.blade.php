@@ -34,6 +34,11 @@
                 </div>
 
                 {!! Form::submit('Reregister', ['class' => 'btn btn-primary']) !!}
+                
+                {{-- baby削除フォーム --}}
+                    {!! Form::model($baby, ['route' => ['babies.destroy', $baby->id], 'method' => 'delete']) !!}
+                    {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::close() !!}
 
             {!! Form::close() !!}
         </div>

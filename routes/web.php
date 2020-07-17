@@ -26,10 +26,11 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'babies/{baby}'], function () {
       Route::get('logs', 'LogsController@index')->name('logs.index');
+      Route::get('logs/create', 'LogsController@create')->name('logs.create');
+      Route::get('logs/edit', 'LogsController@edit')->name('logs.edit');
     });
-    Route::resource('babies', 'BabiesController', ['only' => ['index', 'create', 'store', 'edit', 'update', 'show']]);
-    Route::resource('logs', 'LogsController' ,  ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    Route::resource('babies', 'BabiesController');
+    Route::resource('logs', 'LogsController' ,  ['only' => ['store', 'update', 'destroy']]);
     
+    Route::get('averages', 'AveragesController@index')->name('averages.index');
 });
-
-Route::get('averages', 'AveragesController@index')->name('averages.index');

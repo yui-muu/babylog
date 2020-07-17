@@ -193,5 +193,16 @@ class BabiesController extends Controller
         ]);
         
     }
+     // deleteで/idにアクセスされた場合の「baby削除処理」
+    public function destroy($id)
+    {
+        // idの値でbabyを検索して取得
+        $baby = Baby::findOrFail($id);
+        // lbabyを削除
+        $baby->delete();
+
+        // トップページへリダイレクトさせる
+        return redirect('/');
+    }
 
 }

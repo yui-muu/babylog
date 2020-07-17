@@ -23,4 +23,6 @@ class Baby extends Model
     {
         return $this->hasMany(Log::class);
     }
+    
+    
 }
