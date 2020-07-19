@@ -60,7 +60,7 @@ class BabiesController extends Controller
     {
         // バリデーション
         $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:20',
             'birthday' => 'required',
             'gender' => 'required',
             'weight' => 'required',
@@ -98,7 +98,7 @@ class BabiesController extends Controller
     {
         // バリデーション
         $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:20',
             'birthday' => 'required',
             'gender' => 'required',
             'weight' => 'required',
@@ -175,10 +175,9 @@ class BabiesController extends Controller
             $result = $nothing;
         }
         
-        $average = Average::Where('age_from', '<=', $num)->Where('age_to', '>=', $num)
-        ->Where('gender', $baby->gender)
+        $average = Average::where('age_from', '<=', $num)->where('age_to', '>=', $num)
+        ->where('gender', $baby->gender)
         ->first();
-        
        
         
         // 詳細ビューでそれを表示
@@ -198,7 +197,7 @@ class BabiesController extends Controller
     {
         // idの値でbabyを検索して取得
         $baby = Baby::findOrFail($id);
-        // lbabyを削除
+        
         $baby->delete();
 
         // トップページへリダイレクトさせる

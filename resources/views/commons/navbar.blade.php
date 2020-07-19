@@ -24,6 +24,8 @@
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item">{!! link_to_route('babies.create', 'Add baby', ['baby' => Request::route('baby')]) !!}</li>
                             <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">{!! link_to_route('babies.index', 'select baby', []) !!}</li>
+                            <li class="dropdown-divider"></li>
                             <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
                         </ul>
                     </li>

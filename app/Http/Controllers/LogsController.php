@@ -61,8 +61,13 @@ class LogsController extends Controller
         $baby = Baby::findOrFail($id); 
         // logを取得
         $log = new Log;
-       
-
+        
+        // $error = array();
+        // $error[] = "どちらか入力して下さい。";
+        // if ($log->weigh == null && $log->height == null) { 
+        // return redirect()->back()->withInput()->withErrors($error);
+        // } 
+        
         // ビューを表示
         return view('logs.create', [
             'log' => $log,
@@ -79,13 +84,13 @@ class LogsController extends Controller
      // postで/にアクセスされた場合の「Babyの体重・身長登録処理」
     public function store(Request $request)
     {
-        // // // バリデーション
-        // $request->validate([
-        //     'weight' => 'numeric',
-        //     'height' => 'numeric',
-        // ]);
         $baby = $request->session()->get('baby');
-        // Babyを作成
+        // // バリデーション
+        $request->validate([
+            'weight' => 'numeric',
+            'height' => 'numeric',
+        ]);
+        // logを作成
         $log = new Log;
         $log->weight = $request->weight;
         $log->height = $request->height;

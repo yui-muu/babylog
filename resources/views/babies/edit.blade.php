@@ -20,7 +20,7 @@
 
                 <div class="form-group">
                     {!! Form::label('gender', 'Gender') !!}
-                    {!!Form::select('gender', ['B' => 'Boy', 'G' => 'Girl'], null, ['placeholder' => '性別を選択'],) !!}
+                    {!!Form::select('gender', ['Boy' => 'Boy', 'Girl' => 'Girl'], null, ['placeholder' => '性別を選択'],) !!}
                 </div>
 
                 <div class="form-group">
@@ -32,15 +32,16 @@
                     {!! Form::label('height', 'Birth height') !!}
                     {!! Form::text('height', null, ['placeholder' => '小数点第一位まで入力（例：50.0）'], ['class' => 'form-control'], old('height')) !!} cm
                 </div>
-
-                {!! Form::submit('Reregister', ['class' => 'btn btn-primary']) !!}
                 
-                {{-- baby削除フォーム --}}
-                    {!! Form::model($baby, ['route' => ['babies.destroy', $baby->id], 'method' => 'delete']) !!}
-                    {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
-
+                {{-- baby更新フォーム --}}
+                {!! Form::submit('Reregister', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
+                
+             {{-- baby削除フォーム --}}
+                {!! Form::model($baby, ['route' => ['babies.destroy', $baby->id], 'method' => 'delete']) !!}
+                {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
+            {!! Form::close() !!}
+
         </div>
     </div>
 @endsection

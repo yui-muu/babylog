@@ -4,7 +4,15 @@
 
     <h1>Newest</h1>
     <h2>※入力は1日1回</h2>
-
+   @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="row">
         <div class="col-6">
             {!! Form::model($log, ['route' => 'logs.store']) !!}
