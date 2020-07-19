@@ -30,9 +30,13 @@
                         <tr>
                             <th>平均との差</th>
                             @if ($log)
-                            <td>{{ $log->weight - $average->weight }}kg</td>
+                                 @if ($log->weight == null) 
+                                <td>---</td>
+                                @else
+                                <td>{{ $log->weight - $average->weight }}g</td>
+                                @endif
                             @else
-                            <td>{{ $baby->weight - $average->weight }}kg</td>
+                            <td>{{ $baby->weight - $average->weight }}g</td>
                             @endif
                         </tr>
                         <tr>
@@ -58,7 +62,11 @@
                         <tr>
                             <th>平均との差</th>
                             @if ($log)
-                            <td>{{ $log->height - $average->height }}cm</td>
+                                 @if ($log->height == null) 
+                                <td>---</td>
+                                @else
+                                <td>{{ $log->height - $average->height }}cm</td>
+                                @endif
                             @else
                             <td>{{ $baby->height - $average->height }}cm</td>
                             @endif

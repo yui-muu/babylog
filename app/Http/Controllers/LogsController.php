@@ -62,16 +62,23 @@ class LogsController extends Controller
         // logを取得
         $log = new Log;
         
-        // $error = array();
-        // $error[] = "どちらか入力して下さい。";
-        // if ($log->weigh == null && $log->height == null) { 
-        // return redirect()->back()->withInput()->withErrors($error);
-        // } 
+        $error[] = "身長・体重どちらか入力して下さい。";
+        $error2[] = "入力は1日１回のみ";
+        
+        $logs = $baby->logs()->orderBy('created_at', 'desc')->get();
+        $log0 = \Arr::get($logs, 0);
+        $dt = Carbon::now();
+        
+        if (($dt->format('Y-m-d')) ===  ($log0->created_at->format('Y-m-d'))) { 
+        return redirect()->back()->withErrors($error2);
+        } else {
         
         // ビューを表示
         return view('logs.create', [
             'log' => $log,
         ]);
+        }
+    
     }
 
     /**
@@ -84,12 +91,13 @@ class LogsController extends Controller
      // postで/にアクセスされた場合の「Babyの体重・身長登録処理」
     public function store(Request $request)
     {
-        $baby = $request->session()->get('baby');
-        // // バリデーション
+        // // // バリデーション
         $request->validate([
-            'weight' => 'numeric',
-            'height' => 'numeric',
+            'weight' => 'nullable|numeric',
+            'height' => 'nullable|numeric',
         ]);
+        
+        $baby = $request->session()->get('baby');
         // logを作成
         $log = new Log;
         $log->weight = $request->weight;
@@ -97,6 +105,12 @@ class LogsController extends Controller
         $log->baby_id = $baby->id;
         $log->save();
 
+        $error = array();
+        $error[] = "身長・体重どちらか入力して下さい。";
+        //身長と体重がどちらも入力されていない時のエラー表示
+        if (($log->weight == null) && ($log->height == null)) { 
+        return redirect()->back()->withErrors($error);
+        } 
         // 前のURLへリダイレクトさせる
        return redirect(route('babies.show', ['baby' => $baby->id]));
     }
@@ -118,10 +132,13 @@ class LogsController extends Controller
         $baby = Baby::findOrFail($id);
         // // idの値でlogを検索して取得
         $log = Log::findOrFail($log);
+        
+        $error[] = "身長・体重どちらか入力して下さい。";
 
         // // 編集ビューでそれを表示
         return view('logs.edit', [
             'log' => $log,
+            'error' => $error,
         ]);
     }
 
@@ -136,11 +153,11 @@ class LogsController extends Controller
      // putで（任意のid）にアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
     {
-        // // バリデーション
-        $request->validate([
-            'weight' => 'numeric',
-            'height' => 'numeric',
-        ]);
+        // // // バリデーション
+        // $request->validate([
+        //     'weight' => 'numeric',
+        //     'height' => 'numeric',
+        // ]);
         
         $baby = '';
         // idの値でlogを検索して取得
@@ -149,6 +166,13 @@ class LogsController extends Controller
         $log->weight = $request->weight;
         $log->height = $request->height;
         $log->save();
+        
+        $error = array();
+        $error[] = "身長・体重どちらか入力して下さい。";
+        //身長と体重がどちらも入力されていない時のエラー表示
+        if (($log->weight == null) && ($log->height == null)) { 
+        return redirect()->back()->withErrors($error);
+        } 
 
         // Historyページへリダイレクトさせる
         return redirect(route('logs.index', ['baby' => $log->baby_id]));
