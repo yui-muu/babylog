@@ -63,7 +63,7 @@ class LogsController extends Controller
         $log = new Log;
         
         $error[] = "身長・体重どちらか入力して下さい。";
-        $error2[] = "入力は1日１回のみ";
+        $error2[] = "入力は1日１回のみ。☆編集はHistoryページへ☆";
         
         $logs = $baby->logs()->orderBy('created_at', 'desc')->get();
         $log0 = \Arr::get($logs, 0);
@@ -153,11 +153,11 @@ class LogsController extends Controller
      // putで（任意のid）にアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
     {
-        // // // バリデーション
-        // $request->validate([
-        //     'weight' => 'numeric',
-        //     'height' => 'numeric',
-        // ]);
+       // // // バリデーション
+        $request->validate([
+            'weight' => 'nullable|numeric',
+            'height' => 'nullable|numeric',
+        ]);
         
         $baby = '';
         // idの値でlogを検索して取得

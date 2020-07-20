@@ -86,11 +86,15 @@ class BabiesController extends Controller
     {
         // idの値でBabyを検索して取得
         $baby = Baby::findOrFail($id);
-
+        // 認証済みユーザ（閲覧者）がそのbabyの所有者である場合は、babyを更新
+        if (\Auth::id() === $baby->user_id) {
         // 編集ビューでそれを表示
         return view('babies.edit', [
             'baby' => $baby,
         ]);
+        }
+        // トップページへリダイレクトさせる
+        return redirect('/');
     }
 
     // putまたはpatchで/（任意のid）にアクセスされた場合の「更新処理」
@@ -159,7 +163,8 @@ class BabiesController extends Controller
         $firstGainPerDay = null;
         $nothing = '---';
         $result = '';
-        
+        //ログがあり、かつlogDaysとregisterLogDaysが０でない時、
+        //ログが２つ以上なら$gainPerDayの処理、ログが１つしかないなら$firstGainPerDayの処理
         if ($log && !($logDays === 0) && !($registerLogDays === 0)) {
             if (count($logs) >= 2) {
                 $gainPerDay = floor(($log->weight - $logFormer->weight) / $logDays * 1000);
@@ -168,13 +173,14 @@ class BabiesController extends Controller
                 $firstGainPerDay = floor(($log->weight - $baby->weight) / $registerLogDays * 1000);
                 $result = $firstGainPerDay;
             }
+        //logDaysとregisterLogDaysが０のとき
         } elseif (($logDays === 0) || ($registerLogDays === 0)) {
             // 処理をしない
         } else {
             $nothing;
             $result = $nothing;
         }
-        
+        //averageを取得
         $average = Average::where('age_from', '<=', $num)->where('age_to', '>=', $num)
         ->where('gender', $baby->gender)
         ->first();
@@ -197,8 +203,10 @@ class BabiesController extends Controller
     {
         // idの値でbabyを検索して取得
         $baby = Baby::findOrFail($id);
-        
+        // 認証済みユーザ（閲覧者）がそのbabyの所有者である場合は、babyを削除
+        if (\Auth::id() === $baby->user_id) {
         $baby->delete();
+        }
 
         // トップページへリダイレクトさせる
         return redirect('/');
