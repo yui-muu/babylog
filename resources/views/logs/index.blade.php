@@ -21,14 +21,22 @@
                                 </tr>
                                 <tr>
                                     <th>平均体重</th>
+                                    @if ($average)
                                     <td>{{ $average->weight }}kg</td>
+                                    @else
+                                    <td>---</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <th>平均との差</th>
-                                    @if ($log->weight == null) 
-                                    <td>---</td>
+                                    @if ($average)
+                                        @if ($log->weight == null) 
+                                        <td>---</td>
+                                        @else
+                                        <td>{{ $log->weight - $average->weight }}g</td>
+                                        @endif
                                     @else
-                                    <td>{{ $log->weight - $average->weight }}g</td>
+                                    <td>---</td>
                                     @endif
                                 </tr>
                             </table>
@@ -41,14 +49,22 @@
                                 </tr>
                                 <tr>
                                     <th>平均身長</th>
+                                    @if ($average)
                                     <td>{{ $average->height }}cm</td>
+                                    @else
+                                    <td>---</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <th>平均との差</th>
-                                    @if ($log->height == null) 
-                                    <td>---</td>
+                                    @if ($average)
+                                        @if ($log->height == null) 
+                                        <td>---</td>
+                                        @else
+                                        <td>{{ $log->height - $average->height }}cm</td>
+                                        @endif
                                     @else
-                                    <td>{{ $log->height - $average->height }}cm</td>
+                                    <td>---</td>
                                     @endif
                                 </tr>
                             </table>
