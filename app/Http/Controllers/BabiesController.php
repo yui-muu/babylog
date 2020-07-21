@@ -185,7 +185,8 @@ class BabiesController extends Controller
         ->where('gender', $baby->gender)
         ->first();
        
-        
+        // 認証済みユーザ（閲覧者）がそのbabyの所有者である場合は表示。
+        if (\Auth::id() === $baby->user_id) {
         // 詳細ビューでそれを表示
         return view('babies.show', [
             'baby' => $baby,
@@ -196,6 +197,11 @@ class BabiesController extends Controller
             'result' => $result,
             
         ]);
+        }
+        // トップページへリダイレクトさせる
+        return redirect('/');
+    
+        
         
     }
      // deleteで/idにアクセスされた場合の「baby削除処理」
