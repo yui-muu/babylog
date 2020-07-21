@@ -65,20 +65,22 @@ class LogsController extends Controller
         $error[] = "身長・体重どちらか入力して下さい。";
         $error2[] = "入力は1日１回のみ。☆編集はHistoryページへ☆";
         
-        $logs = $baby->logs()->orderBy('created_at', 'desc')->get();
-        $log0 = \Arr::get($logs, 0);
+        $log1 = $baby->logs()->orderBy('created_at', 'desc')->first();
         $dt = Carbon::now();
         
-        if (($dt->format('Y-m-d')) ===  ($log0->created_at->format('Y-m-d'))) { 
-        return redirect()->back()->withErrors($error2);
+        if (!$log1) { 
+            // ビューを表示
+            return view('logs.create', [
+                'log' => $log,
+            ]);
+        } elseif ($dt->format('Y-m-d') === $log1->created_at->format('Y-m-d')) { 
+            return redirect()->back()->withErrors($error2);
         } else {
-        
-        // ビューを表示
-        return view('logs.create', [
-            'log' => $log,
-        ]);
+            // ビューを表示
+            return view('logs.create', [
+                'log' => $log,
+            ]);
         }
-    
     }
 
     /**
