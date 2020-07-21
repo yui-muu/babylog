@@ -24,7 +24,7 @@
                             @endif
                         </tr>
                         <tr>
-                            <th>平均体重</th>
+                            <th>現在の月齢に当たる平均体重</th>
                             @if ($average)
                             <td>{{ $average->weight }}kg</td>
                             @else
@@ -64,7 +64,7 @@
                             @endif
                         </tr>
                         <tr>
-                            <th>平均身長</th>
+                            <th>現在の月齢に当たる平均身長</th>
                             @if ($average)
                             <td>{{ $average->height }}cm</td>
                             @else
