@@ -25,27 +25,19 @@
                         </tr>
                         <tr>
                             <th>現在の月齢に当たる平均体重</th>
-                            @if ($average)
                             <td>{{ $average->weight }}kg</td>
-                            @else
-                            <td>---</td>
-                            @endif
                         </tr>
                         <tr>
                             <th>平均との差</th>
-                            @if ($average)
                                 @if ($log)
                                      @if ($log->weight == null) 
                                     <td>---</td>
                                     @else
-                                    <td>{{ $log->weight - $average->weight }}g</td>
+                                    <td>{{ $log->weight - $average->weight }}kg</td>
                                     @endif
                                 @else
-                                <td>{{ $baby->weight - $average->weight }}g</td>
+                                <td>{{ $baby->weight - $average->weight }}kg</td>
                                 @endif
-                            @else
-                            <td>---</td>
-                            @endif
                         </tr>
                         <tr>
                             <th>１日当たりの増加量</th>
@@ -65,15 +57,10 @@
                         </tr>
                         <tr>
                             <th>現在の月齢に当たる平均身長</th>
-                            @if ($average)
                             <td>{{ $average->height }}cm</td>
-                            @else
-                            <td>---</td>
-                            @endif
                         </tr>
                         <tr>
                             <th>平均との差</th>
-                            @if ($average)
                                 @if ($log)
                                      @if ($log->height == null) 
                                     <td>---</td>
@@ -83,9 +70,6 @@
                                 @else
                                 <td>{{ $baby->height - $average->height }}cm</td>
                                 @endif
-                            @else
-                            <td>---</td>
-                            @endif
                         </tr>
                 </table>
                 {{-- 入力ページへのリンク --}}
