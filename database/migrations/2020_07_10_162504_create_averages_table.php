@@ -16,8 +16,8 @@ class CreateAveragesTable extends Migration
         Schema::create('averages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('gender');
-            $table->string('age_from');
-            $table->string('age_to');
+            $table->integer('age_from');
+            $table->integer('age_to');
             $table->decimal('weight', 3, 1);
             $table->decimal('height', 3, 1);
             $table->timestamps();
