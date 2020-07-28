@@ -183,7 +183,8 @@ class BabiesController extends Controller
         //averageを取得
         $average = Average::where('age_from', '<=', $num)->where('age_to', '>=', $num)
         ->where('gender', $baby->gender)
-        ->first();
+        ->get()
+        ->last();
        
         // 認証済みユーザ（閲覧者）がそのbabyの所有者である場合は表示。
         if (\Auth::id() === $baby->user_id) {
