@@ -45,6 +45,7 @@ class LogsController extends Controller
             'logs' => $logs,
             'baby' => $baby,
             'average' => $average,
+            'num' => $num,
         ]);
     }
 

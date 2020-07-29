@@ -25,15 +25,17 @@
                         </tr>
                         <tr>
                             <th>現在の月齢に当たる平均体重</th>
-                            @if ($average)
-                            <td>{{ $average->weight }}kg</td>
-                            @else
+                            @if ($num > 365)
                             <td>---</td>
+                            @elseif ($average)
+                            <td>{{ $average->weight }}kg</td>
                             @endif
                         </tr>
                         <tr>
                             <th>平均との差</th>
-                            @if ($average)
+                            @if ($num > 365)
+                            <td>---</td>
+                            @elseif ($average)
                                 @if ($log)
                                      @if ($log->weight == null) 
                                     <td>---</td>
@@ -43,8 +45,6 @@
                                 @else
                                 <td>{{ $baby->weight - $average->weight }}kg</td>
                                 @endif
-                            @else
-                            <td>---</td>
                             @endif
                         </tr>
                         <tr>
@@ -65,15 +65,17 @@
                         </tr>
                         <tr>
                             <th>現在の月齢に当たる平均身長</th>
-                            @if ($average)
-                            <td>{{ $average->height }}cm</td>
-                            @else
+                            @if ($num > 365)
                             <td>---</td>
+                            @elseif ($average)
+                            <td>{{ $average->height }}cm</td>
                             @endif
                         </tr>
                         <tr>
                             <th>平均との差</th>
-                             @if ($average)
+                            @if ($num > 365)
+                            <td>---</td>
+                            @elseif ($average)
                                 @if ($log)
                                      @if ($log->height == null) 
                                     <td>---</td>
@@ -83,8 +85,6 @@
                                 @else
                                 <td>{{ $baby->height - $average->height }}cm</td>
                                 @endif
-                            @else
-                            <td>---</td>
                             @endif
                         </tr>
                 </table>

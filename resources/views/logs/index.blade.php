@@ -21,22 +21,22 @@
                                 </tr>
                                 <tr>
                                     <th>平均体重</th>
-                                    @if ($average)
-                                    <td>{{ $average->weight }}kg</td>
-                                    @else
+                                    @if ($num > 365)
                                     <td>---</td>
+                                    @elseif ($average)
+                                    <td>{{ $average->weight }}kg</td>
                                     @endif
                                 </tr>
                                 <tr>
                                     <th>平均との差</th>
-                                    @if ($average)
+                                    @if ($num > 365)
+                                    <td>---</td>
+                                    @elseif ($average)
                                         @if ($log->weight == null) 
                                         <td>---</td>
                                         @else
                                         <td>{{ $log->weight - $average->weight }}g</td>
                                         @endif
-                                    @else
-                                    <td>---</td>
                                     @endif
                                 </tr>
                             </table>
@@ -49,22 +49,22 @@
                                 </tr>
                                 <tr>
                                     <th>平均身長</th>
-                                    @if ($average)
-                                    <td>{{ $average->height }}cm</td>
-                                    @else
+                                    @if ($num > 365)
                                     <td>---</td>
+                                    @elseif ($average)
+                                    <td>{{ $average->height }}cm</td>
                                     @endif
                                 </tr>
                                 <tr>
                                     <th>平均との差</th>
-                                    @if ($average)
+                                    @if ($num > 365)
+                                    <td>---</td>
+                                    @elseif ($average)
                                         @if ($log->height == null) 
                                         <td>---</td>
                                         @else
                                         <td>{{ $log->height - $average->height }}cm</td>
                                         @endif
-                                    @else
-                                    <td>---</td>
                                     @endif
                                 </tr>
                             </table>
