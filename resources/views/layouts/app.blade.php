@@ -5,13 +5,13 @@
         <title>BABY LOG</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     </head>
 
     <body>
 
         {{-- ナビゲーションバー --}}
         @include('commons.navbar')
-
         <div class="container">
             {{-- エラーメッセージ --}}
             @include('commons.error_messages')

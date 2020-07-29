@@ -2,7 +2,6 @@
 
 @section('content')
     
-    
     <h1>Mypage</h1>
         <div class="row">
             <aside class="col-sm-4">

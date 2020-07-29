@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+body {
+    background-image:url("../images/henley-design-studio---DFs521_qA-unsplash.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    background-color:rgba(255,255,255,0.3);
+    background-blend-mode:lighten;
+}
+
