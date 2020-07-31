@@ -5,8 +5,10 @@
   body {
     background-image: url("../images/henley-design-studio---DFs521_qA-unsplash.jpg");
     background-size: contain;
+    background-repeat: no-repeat no-repeat;
     background-attachment: fixed;
-    background-position: right 20px bottom 20px;
+    background-size: cover;
+    background-position: right 10px bottom 10px;
     background-color:rgba(255,255,255,0.3);
     background-blend-mode:lighten;
   }

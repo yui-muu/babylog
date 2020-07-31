@@ -11,8 +11,7 @@
                                 <th>生後</th>
                                 <th>Weight</th>
                                 <th>Height</th>
-                                <th>1日の体重<br>
-                                増加目安</th>
+                                <th>1日の体重増加目安</th>
                             </tr>
                         @foreach ($boyAverages as $boyAverage)
                             <tr>
