@@ -1,25 +1,25 @@
 @charset "utf-8";
 
-/*body {*/
-/*    background-image:url("../images/henley-design-studio---DFs521_qA-unsplash.jpg");*/
-/*    background-size: cover;*/
-/*    background-attachment: fixed;*/
-/*    background-position: center center;*/
-/*    background-color:rgba(255,255,255,0.3);*/
-/*    background-blend-mode:lighten;*/
-/*}*/
 
-body::before {
-    content: "";
-    background: url("../images/henley-design-studio---DFs521_qA-unsplash.jpg") no-repeat center center;
-    background-size: cover;
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    /*background-color:rgba(255,255,255,0.3);*/
-    /*background-blend-mode:lighten;*/
+@media (max-width: 640px) {
+  body {
+    background-image: url("../images/henley-design-studio---DFs521_qA-unsplash.jpg");
+    background-size: contain;
+    background-attachment: fixed;
+    background-position: right 20px bottom 20px;
+    background-color:rgba(255,255,255,0.3);
+    background-blend-mode:lighten;
+  }
+}
+@media (min-width: 641px) {
+  body {
+    background-image: url("../images/henley-design-studio---DFs521_qA-unsplash.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat no-repeat;
+    background-attachment: fixed;
+    background-position: 100% 100%;
+    background-color:rgba(255,255,255,0.3);
+    background-blend-mode:lighten;
+
+  }
 }
