@@ -30,7 +30,7 @@
                 
                 <div class="form-group">
                     {!! Form::label('height', 'Birth height') !!}
-                    {!! Form::text('height', null, ['placeholder' => '小数点第一位まで入力'], ['class' => 'form-control'], old('height')) !!} cm
+                    {!! Form::text('height', null, ['placeholder' => '小数点第一位まで入力'], old('height'), ['class' => 'form-control'] ) !!} cm
                 </div>
                 
                 {{-- baby更新フォーム --}}

@@ -63,8 +63,8 @@ class BabiesController extends Controller
             'name' => 'required|max:20',
             'birthday' => 'required',
             'gender' => 'required',
-            'weight' => 'required|numeric',
-            'height' => 'required|numeric',
+            'weight' => 'required|numeric|max:99.9|regex:/^\d{1,2}.\d$/',
+            'height' => 'required|numeric|max:99.9|regex:/^\d{1,2}.\d$/',
         ]);
         // Babyを作成
         $baby = new Baby;
@@ -105,8 +105,8 @@ class BabiesController extends Controller
             'name' => 'required|max:20',
             'birthday' => 'required',
             'gender' => 'required',
-            'weight' => 'required|numeric',
-            'height' => 'required|numeric',
+            'weight' => 'required|numeric|max:99.9|regex:/^\d{1,2}.\d$/',
+            'height' => 'required|numeric|max:99.9|regex:/^\d{1,2}.\d$/',
         ]);
         // idの値でBabyを検索して取得
         $baby = Baby::findOrFail($id);

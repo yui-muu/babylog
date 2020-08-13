@@ -96,8 +96,8 @@ class LogsController extends Controller
     {
         // // // バリデーション
         $request->validate([
-            'weight' => 'nullable|numeric',
-            'height' => 'nullable|numeric',
+            'weight' => 'nullable|numeric|max:99.9|regex:/^\d{1,2}.\d$/',
+            'height' => 'nullable|numeric|max:99.9|regex:/^\d{1,2}.\d$/',
         ]);
         
         $baby = $request->session()->get('baby');
@@ -158,8 +158,8 @@ class LogsController extends Controller
     {
        // // // バリデーション
         $request->validate([
-            'weight' => 'nullable|numeric',
-            'height' => 'nullable|numeric',
+            'weight' => 'nullable|numeric|max:99.9|regex:/^\d{1,2}.\d$/',
+            'height' => 'nullable|numeric|max:99.9|regex:/^\d{1,2}.\d$/',
         ]);
         
         $baby = '';
