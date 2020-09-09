@@ -5,9 +5,8 @@
     <h1>History</h1>
         <div class="row">
             <aside class="col-sm-4">
-    
                  <h2>{{ $baby->name }}</h2>
-
+                <br>
                 @if (count($logs) > 0)
                     <ul class="list-unstyled">
                         @foreach ($logs as $log)
@@ -40,7 +39,7 @@
                                     @endif
                                 </tr>
                             </table>
-                            
+                            <br>
                             <div>Height</div>
                             <table class="table table-striped">
                                 <tr>

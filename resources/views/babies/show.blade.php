@@ -3,14 +3,15 @@
 @section('content')
     
     <h1>Mypage</h1>
+    <br>
         <div class="row">
             <aside class="col-sm-4">
                
                 <h2>{{ $baby->name }}</h2>
+                <br>
                 <h3>生後{{ $num }}日</h3>
                 <h3>{{ $gender }}</h3>
-                
-                
+                <br>
                 
                 <div>Weight</div>
                 <table class="table table-striped">

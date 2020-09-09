@@ -32,7 +32,7 @@
                     {!! Form::label('height', 'Birth height') !!}
                     {!! Form::text('height', null, ['placeholder' => '小数点第一位まで入力'], old('height'), ['class' => 'form-control'] ) !!} cm
                 </div>
-                
+                <div style="display:inline-flex">
                 {{-- baby更新フォーム --}}
                 {!! Form::submit('Reregister', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
@@ -41,7 +41,7 @@
                 {!! Form::model($baby, ['route' => ['babies.destroy', $baby->id], 'method' => 'delete']) !!}
                 {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
             {!! Form::close() !!}
-
+                </div>
         </div>
     </div>
 @endsection

@@ -3,7 +3,6 @@
 @section('content')
 
     <h1>Newest</h1>
-    <h2>※入力は1日1回</h2>
     <div class="row">
         <div class="col-6">
             {!! Form::model($log, ['route' => 'logs.store']) !!}
@@ -22,6 +21,9 @@
                 {!! Form::submit('登録', ['class' => 'btn btn-primary']) !!}
 
             {!! Form::close() !!}
+    <br>
+    <h3>※入力は1日1回☆
+    <br>&emsp;編集はHistoryページへ♪</h3>
         </div>
     </div>
 @endsection

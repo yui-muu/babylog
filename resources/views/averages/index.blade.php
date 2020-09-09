@@ -2,6 +2,7 @@
 
 @section('content')
 <h1>Average</h1>
+    <br>
         <div class="row">
             <aside class="col-lg-6 col-sm-4">
                
@@ -23,7 +24,7 @@
                             </tr>
                         @endforeach
                     </table>
-                    
+                    <br>
                     <h2>Girl</h2>
                     <table class="table table-striped">
                             <tr>
