@@ -39,7 +39,6 @@
                                     @endif
                                 </tr>
                             </table>
-                            <br>
                             <div>Height</div>
                             <table class="table table-striped">
                                 <tr>
