@@ -90,4 +90,8 @@
                 </table>
                 {{-- 入力ページへのリンク --}}
                 {!! link_to_route('logs.create', '入力', ['baby' => $baby->id], ['class' => 'btn btn-primary']) !!}
+            
+                <p><br>平均身長・体重・増加量はあくまでも目安☆
+                <br>成長の度合いやペースには個人差があります
+                <br>大切なのは赤ちゃんが元気で育つこと♪</p>
 @endsection
