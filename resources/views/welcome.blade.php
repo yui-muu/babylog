@@ -9,7 +9,8 @@
                 <h1>BABY LOG</h1>
                 <h2>Growth record
                 <br>up to 1 year old baby</h2>
-                <br><h3>赤ちゃんの成長記録！</h3>
+                <br><h3>１歳までの
+                <br>赤ちゃんの成長記録！</h3>
                 <hr>
                 <br><p>身長・体重を入力するだけで
                 <br>月齢による平均値と比較！
